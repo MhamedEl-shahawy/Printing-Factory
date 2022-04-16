@@ -10,7 +10,7 @@ import {
   ApolloClient,
   InMemoryCache,
   gql
-} from "@apollo/client";
+} from "@apollo/client/core";
 export default function Product({product}) {
   return (
     <Layout>

@@ -6,7 +6,7 @@ import {
   ApolloClient,
   InMemoryCache,
   gql
-} from "@apollo/client";
+} from "@apollo/client/core";
 import Layout from '@components/Layout';
 import Container from '@components/Container';
 import Button from '@components/Button';

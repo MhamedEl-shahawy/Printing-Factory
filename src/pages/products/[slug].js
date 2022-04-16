@@ -22,7 +22,7 @@ export default function Product({product}) {
       <Container>
         <div className={styles.productWrapper}>
           <div className={styles.productImage}>
-            <Image src={product.image.url} height={product.image.height} width={product.image.width} />
+            <Image alt={product.name} src={product.image.url} height={product.image.height} width={product.image.width} />
           </div>
           <div className={styles.productContent}>
             <h1>{product.name}</h1>

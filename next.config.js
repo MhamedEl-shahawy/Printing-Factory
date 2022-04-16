@@ -1,3 +1,4 @@
 module.exports = {
-  reactStrictMode: true
+  reactStrictMode: true,
+  images:{domains:["media.graphassets.com","res.cloudinary.com"]}
 }

@@ -24,7 +24,7 @@ export default function Home({data,products}) {
       </Head>
 
       <Container>
-        <h1 className="sr-only">Space Jelly Gear</h1>
+        <h1 className="sr-only">Printer Factory</h1>
 
         <div className={styles.hero}>
           <Link href={heroLink}>

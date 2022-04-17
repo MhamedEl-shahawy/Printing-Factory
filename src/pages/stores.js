@@ -4,10 +4,14 @@ import { FaExternalLinkAlt } from 'react-icons/fa';
 import Layout from '@components/Layout';
 import Container from '@components/Container';
 import Button from '@components/Button';
-
+import {
+  ApolloClient,
+  InMemoryCache,
+  gql
+} from "@apollo/client/core";
 import styles from '@styles/Page.module.scss'
 
-export default function Stores() {
+export default function Stores({data}) {
   return (
     <Layout>
       <Head>
@@ -22,15 +26,16 @@ export default function Stores() {
 
           <div className={styles.storesLocations}>
             <ul className={styles.locations}>
-              <li>
+              {data.map((db)=>(
+              <li key={db.id}>
                 <p className={styles.locationName}>
-                  Name
+                  {db.name}
                 </p>
                 <address>
-                  Address
+                  {db.address}
                 </address>
                 <p>
-                  1234567890
+                  {db.phoneNumber}
                 </p>
                 <p className={styles.locationDiscovery}>
                   <button>
@@ -42,6 +47,7 @@ export default function Stores() {
                   </a>
                 </p>
               </li>
+              ))}
             </ul>
           </div>
 
@@ -56,4 +62,31 @@ export default function Stores() {
       </Container>
     </Layout>
   )
+}
+export async function getStaticProps(){
+  const client = new ApolloClient({
+    uri: process.env.GRAPHQL_KEY,
+    cache: new InMemoryCache()
+  });
+  const data = await client.query({
+    query: gql`
+     query PageStores {
+      storeLocations{
+       address
+       phoneNumber
+       name
+       id
+       location {
+      latitude
+      longitude
+    }
+     }
+}`
+});
+
+  return{
+     props:{
+     data:data.data.storeLocations,
+     }
+  }
 }

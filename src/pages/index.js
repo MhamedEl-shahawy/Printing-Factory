@@ -58,8 +58,15 @@ export default function Home({data,products}) {
                   </a>
                 </Link>
                 <p>
-                  <Button>
-                    Add to Cart
+                  <Button  className="snipcart-add-item"
+                      data-item-id={product.id}
+                      data-item-price={product.price}
+                      data-item-url={"/products/"+product.slug}
+                      data-item-description={product.name}
+                      data-item-image={product.image.url}
+                      data-item-name={product.name}>
+                      Add to cart
+                    
                   </Button>
                 </p>
               </li>
@@ -88,7 +95,7 @@ export async function getStaticProps(){
         name
         slug
       }
-      products(first: 4) {
+      products(where:{categories_some:{slug:"featured"}})  {
     slug
     price
     name
